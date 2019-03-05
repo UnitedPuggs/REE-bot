@@ -6,7 +6,6 @@ import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageChannel;
-//atm, this import isn't being used
 import net.dv8tion.jda.api.entities.PrivateChannel;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -18,12 +17,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Properties;
-//Date (which stills needs to be implemented)
-//LocalDate date = LocalDate.now().plus...
+//Date
 import java.time.LocalDate;
 public class App extends ListenerAdapter {
+	boolean inDraw = false;
 	//This hold all current commands
 	static ArrayList<String> commands = new ArrayList<String>();
+	//Data
 	static int goodboypoints = 0;
 	static int fuckyous = 0;
 	static int time;
@@ -44,26 +44,28 @@ public class App extends ListenerAdapter {
     	MessageChannel objMsgCh = e.getChannel();
     	//This checks the user
     	User objUser = e.getAuthor();
-    	//These are the commands [last updt. 3/2/19]
-    	commands.add("!'nam - PTSD");
-    	commands.add("!retard - Imagine being retarded");
-    	commands.add("!points - Tells you how many points this lil qt has accrued");
-    	commands.add("good bot - Makes sure bot knows he's liked (+1 Good Bot points)");
-    	commands.add("bad bot - Makes sure bot knows he's hated (-1 Good Bot points)");
-    	commands.add("I love you - You really like bot and he *might* like you back");
-    	commands.add("!huntinghorn - Summons God");
-    	commands.add("!thor - Actually Thor tho");
-    	commands.add("!wosh - wosh");
-    	commands.add("!remind - Not actually implemented as of the latest vers.");
-    	commands.add("!africa - Fun lesson on electricity!");
+    	//These are the commands [last updt. 3/4/19]
+    	commands.add("!'nam - PTSD"); //0
+    	commands.add("!retard - Imagine being retarded"); //1
+    	commands.add("!points - Tells you how many points this lil qt has accrued"); //2
+    	commands.add("good bot - Makes sure bot knows he's liked (+1 Good Bot points)"); //3
+    	commands.add("bad bot - Makes sure bot knows he's hated (-1 Good Bot points)"); //4
+    	commands.add("I love you - You really like bot and he *might* like you back"); //5
+    	commands.add("!huntinghorn - Summons God"); //6
+    	commands.add("!thor - Actually Thor tho"); //7
+    	commands.add("!wosh - wosh"); //8
+    	commands.add("!remind - Not actually implemented as of the latest vers."); //9
+    	commands.add("!africa - Fun lesson on electricity!"); //10
+    	commands.add("!github - Links you to the github my creator made for me :)"); //11
+    	commands.add("!8b - Works like an 8Ball"); //12
     	//Need to be implemented**
     	if (objMsg.getContentRaw().equalsIgnoreCase(Ref.prefix + "'nam")) {
     		objMsgCh.sendMessage(objUser.getAsMention() + " https://www.youtube.com/watch?v=s9odzlxOpP0").queue();
     	}
     	else if (objMsg.getContentRaw().equalsIgnoreCase(Ref.prefix + "commands")) {
     		//Please use a for-loop somehow. This is literally garbage code.
-    		objMsgCh.sendMessage(objUser.getAsMention() + " \nCurrent commands include:\n" + commands.get(0)+ "\n" + commands.get(1) + "\n" + commands.get(2) + "\n" + commands.get(3) + "\n" + commands.get(4) + "\n" + commands.get(5) + "\n" + commands.get(6) + "\n" + 
-    				commands.get(7) + "\n" + commands.get(8) + "\n" + commands.get(9) + "\n" + commands.get(10)).queue();
+    		objMsgCh.sendMessage(objUser.getAsMention() + " \n```Current commands include:\n" + commands.get(0)+ "\n" + commands.get(1) + "\n" + commands.get(2) + "\n" + commands.get(3) + "\n" + commands.get(4) + "\n" + commands.get(5) + "\n" + commands.get(6) + "\n" + 
+    				commands.get(7) + "\n" + commands.get(8) + "\n" + commands.get(9) + "\n" + commands.get(10) + "\n" + commands.get(11) + "\n" + commands.get(12) + "```").queue();
     	}
     	else if (objMsg.getContentRaw().equalsIgnoreCase("GOOD BOY") || objMsg.getContentRaw().equalsIgnoreCase("GOOD BOT")) {
     		int randMsg = (int)(Math.random()*4)+1;
@@ -185,18 +187,48 @@ public class App extends ListenerAdapter {
     	else if (objMsg.getContentRaw().equalsIgnoreCase(Ref.prefix + "wosh")) {
     		objMsgCh.sendMessage("https://cdn.discordapp.com/attachments/389870022958383106/548735391268732938/vgj89ykzdmo11.jpeg").queue();
     	}
-    	else if (objMsg.getContentRaw().toLowerCase().contains("gay")) {
-    		objMsgCh.sendMessage(objUser.getAsMention() + " no u").queue();
-    	}
-    	//Need to keep it specific to each individual + need to check out that math
+    	//else if (objMsg.getContentRaw().toLowerCase().contains("gay")) {
+    	//	objMsgCh.sendMessage(objUser.getAsMention() + " no u").queue();
+    	//}
+    	//Need to keep it specific to each individual + need to check out that math. So, it's difficult.
     	else if (objMsg.getContentRaw().equalsIgnoreCase(Ref.prefix + "remind")) {
     		objMsgCh.sendMessage("* Not implemented Yet *").queue();
     	}
     	else if (objMsg.getContentRaw().toLowerCase().contains("nigga")) {
     		objMsgCh.sendMessage("https://cdn.discordapp.com/attachments/435282663524532225/551666854381355008/d34.png").queue();
     	}
-    	else if (objMsg.getContentRaw().equalsIgnoreCase(Ref.prefix + "AFRICA")) {
+    	else if (objMsg.getContentRaw().equalsIgnoreCase(Ref.prefix + "africa")) {
     		objMsgCh.sendMessage("https://cdn.discordapp.com/attachments/418492743547879427/550808671202967568/aaaa.webm").queue();
+    	}
+    	else if (objMsg.getContentRaw().equalsIgnoreCase(Ref.prefix + "github")) {
+    		objMsgCh.sendMessage("https://github.com/UnitedPuggs/REE-bot").queue();
+    	}
+    	else if (objMsg.getContentRaw().toLowerCase().contains(Ref.prefix + "8b")) {
+    		int randMsg = (int)(Math.random()*5)+1;
+    		if (!objUser.isBot()) {
+    			if (randMsg == 1)
+    			objMsgCh.sendMessage(":8ball: **|**  Yes!").queue();
+    			else if (randMsg == 2)
+    			objMsgCh.sendMessage(":8ball: **|** No!").queue();
+    			else if (randMsg == 3) 
+    			objMsgCh.sendMessage(":8ball: **|** Maybe UwO").queue();
+    			else if (randMsg == 4)
+    			objMsgCh.sendMessage(":8ball: **|** Definitely not (´・ω・`)").queue();
+    			else if (randMsg == 5)
+    			objMsgCh.sendMessage(":8ball: **|** For sure ;)").queue();
+    		}
+    	}
+    	//This doesn't quite work yet
+    	else if (objMsg.getContentRaw().equalsIgnoreCase(Ref.prefix + "draw")) {
+    		inDraw = true;
+    		while (inDraw == true) {
+    		if (objMsg.getContentRaw().toLowerCase().contains("t")) 
+    		objMsgCh.sendMessage("https://cdn.discordapp.com/attachments/435282663524532225/552367728397123594/t.jpg").queue();
+    		else if (objMsg.getContentRaw().toLowerCase().contains("e"))
+    		objMsgCh.sendMessage("https://cdn.discordapp.com/attachments/435282663524532225/552367741776953354/e.jpg").queue();
+    		else if (objMsg.getContentRaw().toLowerCase().contains("s"))
+    		objMsgCh.sendMessage("https://cdn.discordapp.com/attachments/435282663524532225/552367750086131712/s.jpg").queue();
+    		}
     	}
     }	
 }
