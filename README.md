@@ -2,7 +2,9 @@
 An entertainment providing discord bot deployed on two servers. Primarily used as entertainment for my friends and I. Commands are fairly straightforward, with the main use of the bot as testing of discord's leniency with Java.
 ## Discord Bot built with [D4J](https://github.com/Discord4J/Discord4J)
 ######Commands
+
 Use the prefix ! before any command
+
 *nam : Shows a video of a dog having a flashback.
 *points : Shows how many points the boy have accrued.
 *huntinghorn : Links a video of Jack Black going ham on a toy sax.
