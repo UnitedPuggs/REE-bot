@@ -46,18 +46,16 @@ public class App extends ListenerAdapter {
     	User objUser = e.getAuthor();
     	//These are the commands [last updt. 3/4/19]
     	commands.add("!'nam - PTSD"); //0
-    	commands.add("!retard - Imagine being retarded"); //1
-    	commands.add("!points - Tells you how many points this lil qt has accrued"); //2
-    	commands.add("good bot - Makes sure bot knows he's liked (+1 Good Bot points)"); //3
-    	commands.add("bad bot - Makes sure bot knows he's hated (-1 Good Bot points)"); //4
-    	commands.add("I love you - You really like bot and he *might* like you back"); //5
-    	commands.add("!huntinghorn - Summons God"); //6
-    	commands.add("!thor - Actually Thor tho"); //7
-    	commands.add("!wosh - wosh"); //8
-    	commands.add("!remind - Not actually implemented as of the latest vers."); //9
-    	commands.add("!africa - Fun lesson on electricity!"); //10
-    	commands.add("!github - Links you to the github my creator made for me :)"); //11
-    	commands.add("!8b - Works like an 8Ball"); //12
+    	commands.add("!points - Tells you how many points this lil qt has accrued"); //1
+    	commands.add("good bot - Makes sure bot knows he's liked (+1 Good Bot points)"); //2
+    	commands.add("bad bot - Makes sure bot knows he's hated (-1 Good Bot points)"); //3
+    	commands.add("!huntinghorn - Summons God"); //4
+    	commands.add("!thor - Actually Thor tho"); //5
+    	commands.add("!wosh - wosh"); //6
+    	commands.add("!remind - Not actually implemented as of the latest vers."); //7
+    	commands.add("!africa - Fun lesson on electricity!"); //8
+    	commands.add("!github - Links you to the github my creator made for me :)"); //9
+    	commands.add("!8b - Works like an 8Ball"); //10
     	//Need to be implemented**
     	if (objMsg.getContentRaw().equalsIgnoreCase(Ref.prefix + "'nam")) {
     		objMsgCh.sendMessage(objUser.getAsMention() + " https://www.youtube.com/watch?v=s9odzlxOpP0").queue();
@@ -65,7 +63,7 @@ public class App extends ListenerAdapter {
     	else if (objMsg.getContentRaw().equalsIgnoreCase(Ref.prefix + "commands")) {
     		//Please use a for-loop somehow. This is literally garbage code.
     		objMsgCh.sendMessage(objUser.getAsMention() + " \n```Current commands include:\n" + commands.get(0)+ "\n" + commands.get(1) + "\n" + commands.get(2) + "\n" + commands.get(3) + "\n" + commands.get(4) + "\n" + commands.get(5) + "\n" + commands.get(6) + "\n" + 
-    				commands.get(7) + "\n" + commands.get(8) + "\n" + commands.get(9) + "\n" + commands.get(10) + "\n" + commands.get(11) + "\n" + commands.get(12) + "```").queue();
+    				commands.get(7) + "\n" + commands.get(8) + "\n" + commands.get(9) + "\n" + commands.get(10) + "```").queue();
     	}
     	else if (objMsg.getContentRaw().equalsIgnoreCase("GOOD BOY") || objMsg.getContentRaw().equalsIgnoreCase("GOOD BOT")) {
     		int randMsg = (int)(Math.random()*4)+1;
@@ -124,31 +122,6 @@ public class App extends ListenerAdapter {
     		objMsgCh.sendMessage(objUser.getAsMention() + " Aww, I'm sorry you feel that way you degenerate fuck").queue(); 
     		objMsgCh.sendMessage("Current Good Bot Points: " + points.getProperty("Points")).queue();
     	}
-    	//Just tells Kai to fuck himself
-    	else if (objMsg.getContentRaw().equalsIgnoreCase(Ref.prefix + "retard")) {
-    		//Takes the <@id> to mention directly
-    		objMsgCh.sendMessage("Fuck you Kai <@272170819277291530>").queue();
-    		try {
-				points.load(new FileReader("myfile.properties"));
-			} catch (FileNotFoundException e2) {
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
-			} catch (IOException e2) {
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
-			}
-    		fuckyous = Integer.parseInt(points.getProperty("Fucks"));
-    		fuckyous += 1;
-    		points.setProperty("Fucks", Integer.toString(fuckyous));
-    		try {
-				points.store(new FileWriter("myfile.properties"), "");
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-    		objMsgCh.sendMessage("Amount of times Kai has been fucked: " + points.getProperty("Fucks")).queue();
-    	}
-    	//Just checks current point values
     	else if (objMsg.getContentRaw().equalsIgnoreCase(Ref.prefix+"points")) {
     		try {
 				points.load(new FileReader("myfile.properties"));
@@ -160,20 +133,6 @@ public class App extends ListenerAdapter {
 				e1.printStackTrace();
 			}
     		objMsgCh.sendMessage("Current Good Bot Points: " + points.getProperty("Points")).queue();
-    	}
-    	//I'm lonely and this was my solution for the weekend
-    	else if (objMsg.getContentRaw().equalsIgnoreCase("I LOVE YOU")) { 
-    		int random = (int)(Math.random()*3)+1;
-    		//Super simple random response. 1/3 chance to get any of these as a response
-    		if (random == 1) {
-    			objMsgCh.sendMessage(objUser.getAsMention() + " I love you too ❤").queue();
-    		}
-    		else if (random == 2) {
-    			objMsgCh.sendMessage(objUser.getAsMention() + " no thanks").queue();
-    		}
-    		else if (random == 3) {
-    			objMsgCh.sendMessage(objUser.getAsMention() + "https://tenor.com/view/pepe-reeeeeeeeeee-shocked-gif-13357899").queue();
-    		}
     	}
     	//Spawn the power of Jack Black and the soul of HH mains everywhere
     	else if (objMsg.getContentRaw().equalsIgnoreCase(Ref.prefix + "huntinghorn")) {
@@ -187,15 +146,8 @@ public class App extends ListenerAdapter {
     	else if (objMsg.getContentRaw().equalsIgnoreCase(Ref.prefix + "wosh")) {
     		objMsgCh.sendMessage("https://cdn.discordapp.com/attachments/389870022958383106/548735391268732938/vgj89ykzdmo11.jpeg").queue();
     	}
-    	//else if (objMsg.getContentRaw().toLowerCase().contains("gay")) {
-    	//	objMsgCh.sendMessage(objUser.getAsMention() + " no u").queue();
-    	//}
-    	//Need to keep it specific to each individual + need to check out that math. So, it's difficult.
     	else if (objMsg.getContentRaw().equalsIgnoreCase(Ref.prefix + "remind")) {
     		objMsgCh.sendMessage("* Not implemented Yet *").queue();
-    	}
-    	else if (objMsg.getContentRaw().toLowerCase().contains("nigga")) {
-    		objMsgCh.sendMessage("https://cdn.discordapp.com/attachments/435282663524532225/551666854381355008/d34.png").queue();
     	}
     	else if (objMsg.getContentRaw().equalsIgnoreCase(Ref.prefix + "africa")) {
     		objMsgCh.sendMessage("https://cdn.discordapp.com/attachments/418492743547879427/550808671202967568/aaaa.webm").queue();
